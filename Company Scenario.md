@@ -8,8 +8,8 @@ Small IT Sercices Company
 50 Users
 
 # Departments
-1.Managment
-2.HR
-3.Finance
-4.IT Support
-6.Sales
+Managment
+HR
+Finance
+IT Support
+Sales
