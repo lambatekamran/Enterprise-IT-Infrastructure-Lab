@@ -1,4 +1,4 @@
-# Windows Server Domain Controller Deployment
+# Phase 1-2 Windows Server Domain Controller Deployment
 
 ## Project: Enterprise Windows Network Infrastructure Lab
 
@@ -323,7 +323,9 @@ This phase demonstrates:
 * Enterprise server administration
 * Technical documentation
 
----
+# All screenshoots for this phase is store in:
+- \Screenshoots\Install-Active-Directory
+- \Screenshoots\Windows-server-installation
 
 # Next Phase
 
