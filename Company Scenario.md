@@ -9,10 +9,8 @@ Small IT Sercices Company
 
 # Departments
 
--Managment
--HR
--Finance
--IT Support
--Sales
-
-#
+- Managment
+- HR
+- Finance
+- IT Support
+- Sales
