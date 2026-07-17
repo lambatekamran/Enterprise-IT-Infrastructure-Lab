@@ -171,11 +171,11 @@ Server Manager
 
 → Add Roles and Features
 
-Enterprise-IT-Infrastructure-Lab/Windows-Server/Add-role-and-feature.png
+![Add Roles and Feature](../Screenshoots/Install-Active-Directory/Add-role-and-feature.png)
 
 → Active Directory Domain Services
 
-Enterprise-IT-Infrastructure-Lab/Screenshoots/Install-Active-Directory/04.png
+![Actie Directory Domain Service](../Screenshoots/Install-Active-Directory/04.png)
 
 → Install
 ```
@@ -194,7 +194,7 @@ Configuration:
 ```
 Deployment Type:
 Add a new forest
-Enterprise-IT-Infrastructure-Lab/Screenshoots/Domain-Controller/01.png
+![New Forest](../Screenshoots/Domain-Controller/01.png)
 
 
 Root Domain Name:
