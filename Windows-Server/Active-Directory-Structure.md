@@ -2,41 +2,68 @@
 
 ## Enterprise IT Infrastructure Lab
 
-## Project Overview
+## What is the Goal of This Phase?
 
-This phase focuses on designing and implementing the Active Directory structure for the fictional company **TechNova Solutions**. A well-planned Active Directory environment improves administration, security, scalability, and resource management.
+In this phase, we built the **Active Directory structure** for our fictional company **TechNova Solutions**.
 
----
+The goal is to organize the company's users, computers, and security groups in a way that is easy to manage as the company grows.
 
-# Objectives
+By the end of this phase, we have:
 
-The objectives of this phase are to:
-
-* Design an enterprise Organizational Unit (OU) structure
-* Create department-based Security Groups
-* Create employee user accounts
-* Assign users to the correct departments
-* Implement role-based access management
-* Document the Active Directory design
+* Created Organizational Units (OUs)
+* Created Security Groups
+* Created employee user accounts
+* Assigned users to the correct groups
+* Prepared the environment for Group Policy and File Server permissions
 
 ---
 
-# Company Information
+# Why Do We Need Active Directory?
+
+In a company with many employees, managing each computer separately is inefficient.
+
+Active Directory allows an administrator to:
+
+* Manage all users from one place
+* Control who can access company resources
+* Apply company policies
+* Organize employees by department
+* Improve security
+
+Instead of configuring every computer individually, everything can be managed centrally.
+
+---
+
+# Lab Information
 
 | Item             | Value               |
 | ---------------- | ------------------- |
 | Company          | TechNova Solutions  |
 | Domain           | technova.local      |
 | Server           | TECH-DC01           |
-| Active Directory | Windows Server 2022 |
+| Operating System | Windows Server 2022 |
 
 ---
 
-# Organizational Unit Design
+# Step 1 – Create Organizational Units (OUs)
 
-The Organizational Units (OUs) are designed to logically organize users, computers, and administrative objects.
+## What is an OU?
 
-## OU Structure
+An **Organizational Unit (OU)** is like a folder inside Active Directory.
+
+It helps organize users, computers, and groups by department.
+
+For example:
+
+* HR employees are stored in the HR OU.
+* Finance employees are stored in the Finance OU.
+* IT staff are stored in the Information Technology OU.
+
+This makes administration much easier.
+
+---
+
+## OUs Created
 
 ```text
 technova.local
@@ -52,77 +79,90 @@ technova.local
 └── Service Accounts
 ```
 
-## Purpose of Each OU
+### Screenshot 1
 
-| OU                     | Purpose                                    |
-| ---------------------- | ------------------------------------------ |
-| Management             | Executive and management user accounts     |
-| Human Resources        | HR department users                        |
-| Finance                | Finance department users                   |
-| Information Technology | IT staff accounts                          |
-| Sales                  | Sales department users                     |
-| Computers              | Domain-joined client computers             |
-| Servers                | Member servers                             |
-| Groups                 | Security and distribution groups           |
-| Service Accounts       | Accounts used by applications and services |
+(<../Screenshoots/Active Directory/ou-structure.png>)
 
 ---
 
-# Naming Convention
+# Step 2 – Create Security Groups
 
-## Organizational Units
+## What is a Security Group?
 
-Department names are used for clarity and consistency.
+A Security Group is used to give permissions to multiple users at the same time.
+
+Instead of giving permissions to every employee individually, we add users to a group.
 
 Example:
 
 ```text
-Finance
-Information Technology
-Sales
+Finance Folder
+
+↓
+
+Finance_Users Group
+
+↓
+
+David Lee
+Sarah Ahmed
+John Smith
 ```
 
----
-
-# Security Groups
-
-Security Groups are used to assign permissions based on department or job role.
-
-## Group Configuration
-
-| Group Name    | Scope  | Type     |
-| ------------- | ------ | -------- |
-| IT_Admins     | Global | Security |
-| HR_Users      | Global | Security |
-| Finance_Users | Global | Security |
-| Sales_Users   | Global | Security |
-| Managers      | Global | Security |
+Anyone added to **Finance_Users** automatically receives the correct permissions.
 
 ---
 
-# User Accounts
+## Security Groups Created
 
-The following sample users were created.
+| Group Name    | Scope  | Type     | Purpose            |
+| ------------- | ------ | -------- | ------------------ |
+| IT_Admins     | Global | Security | IT administrators  |
+| HR_Users      | Global | Security | HR department      |
+| Finance_Users | Global | Security | Finance department |
+| Sales_Users   | Global | Security | Sales department   |
+| Managers      | Global | Security | Management team    |
 
-| Full Name     | Username | Department             | Security Group |
-| ------------- | -------- | ---------------------- | -------------- |
-| John Smith    | jsmith   | Management             | Managers       |
-| Sarah Ahmed   | sahmed   | Human Resources        | HR_Users       |
-| David Lee     | dlee     | Finance                | Finance_Users  |
-| Michael Brown | mbrown   | Information Technology | IT_Admins      |
-| Emma Wilson   | ewilson  | Sales                  | Sales_Users    |
+**Group Scope:** Global
 
-Each user account was configured with:
+**Group Type:** Security
+
+### Screenshot 2
+
+**Insert Screenshot:**
+
+(<../Screenshoots/Active Directory/Groups-OU.png>)
+---
+
+# Step 3 – Create Employee Accounts
+
+We created sample employee accounts for each department.
+
+These accounts simulate a real company environment.
+
+| Employee      | Username | Department             | Group         |
+| ------------- | -------- | ---------------------- | ------------- |
+| John Smith    | jsmith   | Management             | Managers      |
+| Sarah Ahmed   | sahmed   | Human Resources        | HR_Users      |
+| David Lee     | dlee     | Finance                | Finance_Users |
+| Michael Brown | mbrown   | Information Technology | IT_Admins     |
+| Emma Wilson   | ewilson  | Sales                  | Sales_Users   |
+
+Each user was configured with:
 
 * User must change password at next logon
 * Standard user permissions
 * Department-specific group membership
 
+### Screenshot 3
+
+(<../Screenshoots/Active Directory/users-created.png>)
+
 ---
 
-# Group Membership Strategy
+# Step 4 – Add Users to Security Groups
 
-Role-Based Access Control (RBAC) was implemented using Security Groups.
+Each employee was added to the appropriate Security Group.
 
 Example:
 
@@ -131,26 +171,43 @@ Michael Brown
         │
         ▼
 IT_Admins
-        │
-        ▼
-Administrative permissions
-
-Sarah Ahmed
-        │
-        ▼
-HR_Users
-        │
-        ▼
-HR shared resources
 ```
 
-This design simplifies permission management and follows the principle of least privilege.
+This allows permissions to be managed through groups instead of individual users.
+
+### Screenshot 4
+
+**Insert Screenshot:**
+
+(<../Screenshoots/Active Directory/group-membership.png>)
+
+---
+
+# Why Is This Design Important?
+
+This structure follows common enterprise practices.
+
+Benefits include:
+
+* Easy administration
+* Better organization
+* Improved security
+* Easier troubleshooting
+* Scalable as the company grows
+
+For example, when a new Finance employee joins the company:
+
+1. Create the user.
+2. Place the user in the Finance OU.
+3. Add the user to the **Finance_Users** group.
+
+No other configuration is required.
 
 ---
 
 # PowerShell Automation
 
-Organizational Units can be created automatically using PowerShell.
+Instead of creating each OU manually, we can automate the process.
 
 Example:
 
@@ -174,71 +231,53 @@ foreach ($OU in $OUs) {
 }
 ```
 
-Automation reduces manual effort and ensures consistent deployments.
+Automation saves time and reduces mistakes.
 
 ---
 
-# Verification
+# What We Learned
 
-The following checks were completed:
+In this phase we learned how to:
 
-* Verified all Organizational Units were created successfully.
-* Verified Security Groups exist.
-* Verified user accounts were created.
-* Verified users are located in the correct OU.
-* Verified users are members of the appropriate Security Groups.
+* Design an Active Directory structure
+* Organize departments using Organizational Units
+* Create Security Groups
+* Create employee accounts
+* Assign users to groups
+* Use PowerShell to automate administration
 
----
-
-# Screenshots
-
-The following screenshots document this phase:
-
-1. Active Directory Users and Computers console
-2. Organizational Unit structure
-3. Security Groups
-4. User account creation wizard
-5. User properties and group membership
-6. Completed Active Directory structure
-
-All screenshots are stored in:
-
-```text
-/Screenshoots/Active Directory
-```
+These are core tasks performed by Windows System Administrators in enterprise environments.
 
 ---
 
 # Skills Demonstrated
 
-This phase demonstrates the following skills:
-
-* Active Directory Administration
-* Organizational Unit Design
-* Identity and Access Management (IAM)
-* User Account Management
-* Security Group Administration
-* Role-Based Access Control (RBAC)
 * Windows Server Administration
+* Active Directory
+* Organizational Unit (OU) Management
+* User Account Management
+* Security Group Management
+* Identity and Access Management (IAM)
 * PowerShell Automation
 * Enterprise Documentation
 
 ---
 
-# Lessons Learned
+# Conclusion
 
-During this phase, a structured Active Directory environment was created to support centralized administration and future expansion. Department-based Organizational Units and Security Groups provide a scalable foundation for implementing Group Policy, file permissions, and delegated administration.
+The Active Directory environment is now organized and ready for the next stages of the project. In the following phases, these OUs and Security Groups will be used to apply **Group Policies**, configure **File Server permissions**, and manage access to company resources.
 
 ---
 
 # Next Phase
 
-The next phase of the project is **DNS Server Configuration**, where the following tasks will be completed:
+**Phase 4 – DNS Server Configuration**
 
-* Configure Forward Lookup Zones
-* Configure Reverse Lookup Zones
-* Create Host (A) Records
-* Configure Alias (CNAME) Records
-* Configure Pointer (PTR) Records
-* Verify DNS name resolution using `nslookup`
-* Document the DNS infrastructure for GitHub
+In the next phase, we will:
+
+* Configure DNS
+* Create Forward Lookup Zones
+* Create Reverse Lookup Zones
+* Create A, CNAME, and PTR records
+* Test name resolution using `nslookup`
+* Document the DNS infrastructure
