@@ -81,7 +81,7 @@ technova.local
 
 ### Screenshot 1
 
-(<../Screenshoots/Active Directory/ou-structure.png>)
+![OU Structure](<../Screenshoots/Active Directory/ou-structure.png>)
 
 ---
 
@@ -129,9 +129,9 @@ Anyone added to **Finance_Users** automatically receives the correct permissions
 
 ### Screenshot 2
 
-**Insert Screenshot:**
+![Group OU](<../Screenshoots/Active Directory/Groups-OU.png>)
 
-(<../Screenshoots/Active Directory/Groups-OU.png>)
+
 ---
 
 # Step 3 – Create Employee Accounts
@@ -156,7 +156,7 @@ Each user was configured with:
 
 ### Screenshot 3
 
-(<../Screenshoots/Active Directory/users-created.png>)
+![User Created](<../Screenshoots/Active Directory/users-created.png>)
 
 ---
 
@@ -177,9 +177,9 @@ This allows permissions to be managed through groups instead of individual users
 
 ### Screenshot 4
 
-**Insert Screenshot:**
 
-(<../Screenshoots/Active Directory/group-membership.png>)
+![Group Membersip](<../Screenshoots/Active Directory/group-membership.png>)
+
 
 ---
 
