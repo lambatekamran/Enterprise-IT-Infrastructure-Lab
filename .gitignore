@@ -1,0 +1,25 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+
+# PowerShell history
+ConsoleHost_history.txt
+
+# VirtualBox
+*.vbox-prev
+
+# macOS
+.DS_Store
